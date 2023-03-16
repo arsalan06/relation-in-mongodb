@@ -7,10 +7,14 @@ const customerSchema = mongoose.Schema({
 const Customer = mongoose.model("Customer", customerSchema);
 const identifierSchema = new mongoose.Schema({
   customerCode: String,
-  customer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer",
-  },
+  // this relation is by reference
+  // customer: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Customer",
+  // },
+
+  // relation with embedded document
+  customer: customerSchema,
 });
 const Identifier = mongoose.model("Identifier", identifierSchema);
 module.exports = { Customer, Identifier };
